@@ -6,8 +6,9 @@ mem = 0
 class Calculator(object):
     def add(self, num1, num2):
         answer = num1 + num2
-        print('Sum = ', answer)
+        print("sum:", answer)
         return answer
+
     def sub(self, num1, num2):
         answer = num1 - num2
         print('Difference = ', answer)
@@ -214,7 +215,7 @@ def print_options():
 
 
 def memory_ask(x):
-    response = input("Would you like to stor this number in memory? Y/N\n")
+    response = input("Would you like to store this number in memory? Y/N\n")
     if response == "Y":
         global mem
         mem = x
