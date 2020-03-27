@@ -1,8 +1,11 @@
-import math
+from calculator import Calculator
 import decimal
+import math
 
+global mem
 mem = 0
 
+<<<<<<< HEAD
 class Calculator(object):
     def add(self, num1, num2):
         answer = num1 + num2
@@ -355,178 +358,362 @@ def memory_use(memory):
 
 def test_answer(x, funct, place):
     while type(x) == str:
+=======
+def getFirstNumber():
+    a = input("first number? ")
+    while type(a) == str:
+>>>>>>> 819cd30628996e546d87d7019a3bd708935bd87c
         try:
-            x  = float(x)
+            a  = float(a)
         except ValueError:
-            print("Error: Please Enter Valid number")
-            x = input("Enter " + place + " number to " + funct + ":\n")
-    return float(x)
+            print("Error: Please Enter Valid number\n")
+            a = getFirstNumber()
+    return a
+
+def getSecondNumber():
+    b = input("second number? ")
+    while type(b) == str:
+        try:
+            b  = float(b)
+        except ValueError:
+            print("Error: Please Enter Valid number\n")
+            b = getSecondNumber()
+    return b
+
+def getTwoNumbers():
+    a = getFirstNumber()
+    b = getSecondNumber()
+    return a, b
 
 
+def displayResult(x: float):
+    print(x, "\n")
+    return x
+
+def printOptions():
+    print("List of choice:")
+    print('-' * 60)
+    print("Add\t  \t\t   Sine in degrees")
+    print("Subtract   \t \t   Cosine in degrees")
+    print("Multipy \t \t   Tan in degrees")
+    print("Division \t\t   Cosecant in degrees")
+    print("Sine in radians \t   Secant in degrees")
+    print("Cosine in radians \t   Cotangent in degrees")
+    print("Tangent in radians \t   Natural log")
+    print("Cosecant in radians  \t   Base 10 log")
+    print("Secant in radians \t   Log base'x'")
+    print("Cotangent in radians \t   Square root")
+    print("Squared \t\t   Exponent")
+    print("Inverse \t\t   Switch sign")
+    print("Factorial \t\t")
+    print("B : For Binary View \t   O : For Octal View")
+    print("D : For Decimal View\t   H : For Hexidecimal View")
+    print("R: Degree to Radians\t   D: Radians to Degrees")
+    print("M+ : Add to Memory   MRC : Add Memory to Display")
+    print("MRC: Set Memory to 0")
+    
+
+def performFirstCalcLoop(calc):
+    while True:
+        printOptions()
+        print("q to quit")
+        print('-' * 60)
+        choice = input("Operation? ")
+        if choice == 'q':
+            break  # user types q to quit calulator.
+        elif choice == 'Add':
+            a, b = getTwoNumbers()
+            x = displayResult(calc.add(a, b))
+
+        elif choice == 'Subtract':
+            a, b = getTwoNumbers()
+            x = displayResult(calc.sub(a, b))
+
+        elif choice == 'Multiply':
+            a, b = getTwoNumbers()
+            x = displayResult(calc.mul(a, b))
+
+        elif choice == 'Division':
+            a, b = getTwoNumbers()
+            if b != 0:
+                x = displayResult(calc.div(a, b))
+            else:
+                print("Cannot Divide by zero")
+                performFirstCalcLoop(calc)
+
+        elif choice == 'Exponent':
+            print("First number is base, Second is Exponent")
+            a, b = getTwoNumbers()
+            x = displayResult(calc.powerof(a, b))
+
+        elif choice == 'Squared':
+            a = getFirstNumber()
+            x  = displayResult(calc.square(a))
+
+        elif choice == 'Square root':
+            a  = getFirstNumber()
+            x = displayResult(calc.squareroot(a))
+
+        elif choice == 'Inverse':
+            a  = getFirstNumber()
+            x = displayResult(calc.inverse(a))
+
+        elif choice == 'Switch sign':
+            a  = getFirstNumber()
+            x = displayResult(calc.switchsign(a))
+
+        elif choice == 'Sine in radians':
+            a  = getFirstNumber()
+            x = displayResult(calc.sinrad(a))
+
+        elif choice == 'Cosine in radians':
+            a  = getFirstNumber()
+            x = displayResult(calc.cosrad(a))
 
 
+        elif choice == 'Tangent in radians':
+            a  = getFirstNumber()
+            x = displayResult(calc.tanrad(a))
 
+        elif choice == 'Cosecant in radians':
+            a  = getFirstNumber()
+            x = displayResult(calc.cosecrad(a))
 
+        elif choice == 'Secant in radians':
+            a  = getFirstNumber()
+            x = displayResult(calc.secrad(a))
 
+        elif choice == 'Cotangent in radians':
+            a  = getFirstNumber()
+            x = displayResult(calc.cotrad(a))
 
+        elif choice == 'Sine in degrees':
+            a  = getFirstNumber()
+            x =displayResult(calc.sindeg(a))
 
-print_options()
-choice = ""
-while True:
-    try:
-        choice = input("Enter the number of choice: ")
-        if choice == "MC" or choice == "M+" or choice == "MRC":
-            pass
+        elif choice == 'Cosine in degrees':
+            a  = getFirstNumber()
+            x = displayResult(calc.cosdeg(a))
+
+        elif choice == 'Tangent in degrees':
+            a  = getFirstNumber()
+            x = displayResult(calc.tandeg(a))
+
+        elif choice == 'Cosecant in degrees':
+            a  = getFirstNumber()
+            x = displayResult(calc.cosecdeg(a))
+
+        elif choice == 'Secant in degrees':
+            a  = getFirstNumber()
+            x = displayResult(calc.secdeg(a))
+
+        elif choice == 'Cotangent in degrees':
+            a  = getFirstNumber()
+            x = displayResult(calc.cotdeg(a))
+
+        elif choice == 'Factorial':
+            a  = getFirstNumber()
+            x = displayResult(calc.factorial(a))
+
+        elif choice == 'Natural log':
+            a  = getFirstNumber()
+            x = displayResult(calc.ln(a))
+
+        elif choice == 'Base 10 log':
+            a  = getFirstNumber()
+            x = displayResult(calc.logten(a))
+
+        elif choice == 'Log base x':
+            print("Second number is log base")
+            a, b = getTwoNumbers()
+            x = displayResult(calc.logbasex(a,b))
+        elif choice == 'B':
+            a = getFirstNumber()
+            x = displayResult(bin(int(a)))
+            x = a
+
+        elif choice == 'O':
+            a = getFirstNumber()
+            x = displayResult(oct(int(a)))
+            x = a
+
+        elif choice == 'D':
+            a = getFirstNumber()
+            x = displayResult(decimal.Decimal(a))
+            x = a
+
+        elif choice == 'H':
+            a = getFirstNumber()
+            x = displayResult(hex(int(a)))
+            x = a
+
+        elif choice == 'R':
+            a = getFirstNumber()
+            x = displayResult(math.degrees(a))
+
+        elif choice == 'D':
+            a = getFirstNumber()
+            x = displayResult(math.radians(a))
+
+        elif choice == 'M+':
+            global mem
+            mem = x
+
+        elif choice == "MC":
+            mem = 0
+
+        elif choice == "MRC":
+            x = mem
+
         else:
-            choice = int(choice)
-    except ValueError:
-        print("ERROR : Please enter a valid number")
-    if choice == 1:
-        function_string = "add"
-        z = input("Enter the first number to add : ")
-        n1 = test_answer(z,function_string,"first")
-        y = input("Enter the second number to add : ")
-        n2 = test_answer(y,function_string, "second")
-        x = cal.add(n1, n2)
-        contin(x)
-    elif choice == 2:
-        function_string = "subtract"
-        z = input("Enter the first number in subtraction : ")
-        n1 = test_answer(z, function_string, "first")
-        y = input("Enter the second number in subraction : ")
-        n2 = test_answer(y, function_string, "second")
-        x = cal.sub(n1, n2)
-        contin(x)
-    elif choice == 3:
-        function_string = "multiply by"
-        z = input("Enter the first number to " + function_string+ " : ")
-        n1 = test_answer(z, function_string, "first")
-        y = input("Enter the second number number to " + function_string+ " : ")
-        n2 = test_answer(y, function_string, "second")
-        x = cal.mul(n1, n2)
-        contin(x)
-    elif choice == 4:
-        function_string = "divide by"
-        z = input("Enter the first number to " + function_string + " : ")
-        n1 = test_answer(z, function_string, "first")
-        y = input("Enter the second number number to " + function_string + " : ")
-        n2 = test_answer(y, function_string, "second")
-        x = cal.div(n1, n2)
-        contin(x)
-    elif choice == 5:
-        function_string = "find Sine its in Radian"
-        z = input("Enter a number to "+ function_string + " : ")
-        n = test_answer(z,function_string,"")
-        x = cal.sinrad(n)
-        contin(x)
-    elif choice == 6:
-        function_string = "find its Cos in radians"
-        z = input("Enter a number to " + function_string + " : ")
-        n = test_answer(z, function_string, "")
-        x = cal.cosrad(n)
-        contin(x)
-    elif choice == 7:
-        function_string = "find its Tan in radians"
-        z = input("Enter a number to " + function_string + " : ")
-        n = test_answer(z, function_string, "")
-        x = cal.tanrad(n)
-        contin(x)
-    elif choice == 8:
-        function_string = "find its Cosecant in radians"
-        z = input("Enter a number to " + function_string + " : ")
-        n = test_answer(z, function_string, "")
-        x = cal.cosecrad(n)
-        contin(x)
-    elif choice == 9:
-        function_string = "find its Secant in radians"
-        z = input("Enter a number to " + function_string + " : ")
-        n = test_answer(z, function_string, "")
-        x = cal.secrad(n)
-        contin(x)
-    elif choice == 10:
-        function_string = "find its Cot in radians"
-        z = input("Enter a number to " + function_string + " : ")
-        n = test_answer(z, function_string, "")
-        x = cal.cotrad(n)
-        contin(x)
-    elif choice == 11:
-        x = cal.pie()
-        contin(x)
-    elif choice == 12:
-        function_string = "find its Sine in degrees"
-        z = input("Enter a number to " + function_string + " : ")
-        n = test_answer(z, function_string, "")
-        x = cal.sindeg(n)
-        contin(x)
-    elif choice == 13:
-        function_string = "find its Cosine in degrees"
-        z = input("Enter a number to " + function_string + " : ")
-        n = test_answer(z, function_string, "")
-        x = cal.cosdeg(n)
-        contin(x)
-    elif choice == 14:
-        function_string = "find its Tan in degrees"
-        z = input("Enter a number to " + function_string + " : ")
-        n = test_answer(z, function_string, "")
-        x = cal.tandeg(n)
-        contin(x)
-    elif choice == 15:
-        function_string = "find its Cosecant in degrees"
-        z = input("Enter a number to " + function_string + " : ")
-        n = test_answer(z, function_string, "")
-        x = cal.cosecdeg(n)
-        contin(x)
-    elif choice == 16:
-        function_string = "find its Secant in degrees"
-        z = input("Enter a number to " + function_string + " : ")
-        n = test_answer(z, function_string, "")
-        x = cal.secdeg(n)
-        contin(x)
-    elif choice == 17:
-        function_string = "find its Cot in degrees"
-        z = input("Enter a number to " + function_string + " : ")
-        n = test_answer(z, function_string, "")
-        x = cal.cotdeg(n)
-        contin(x)
-    elif choice == 18:
-        function_string = "find its Natural in log"
-        z = input("Enter a number to " + function_string + " : ")
-        n = test_answer(z, function_string, "")
-        x = cal.ln(n)
-        contin(x)
-    elif choice == 19:
-        function_string = "find its Base 10 log"
-        z = input("Enter a number to " + function_string + " : ")
-        n = test_answer(z, function_string, "")
-        x = cal.logten(n)
-        contin(x)
-    elif choice == 20:
-        z = input("Enter base value : ")
-        n1 = test_answer(z, "use as base value", "")
-        n2 = input("Enter a number to find its log to this given log value : ")
-        n2 = test_answer(y, "to serve as the exponent in log function", "")
-        x = cal.logbasex(n1, n2)
-        contin(x)
-    elif choice == 21:
-        function_string = "find its square root"
-        z = input("Enter a number to " + function_string + " : ")
-        n = test_answer(z, function_string, "")
-        x = cal.squareroot(n)
-        contin(x)
-    elif choice == 22:
-        z = input("Enter base value : ")
-        n1 = test_answer(z, "use as base value", "")
-        y = input("Enter a number to serve as exponent : ")
-        n2 = test_answer(y, "Enter a number to serve as exponent", "")
-        x = cal.powerof(n1, n2)
-        contin(x)
-    elif choice == "MC":
-        memory_clear()
-    elif choice == "M+":
-        mem
-        int(mem)
-        memory_use(mem)
-    elif choice == "MRC":
-        memory_recall()
-    else:
-        pass
+            print("That is not a valid input.")
+            performFirstCalcLoop(calc)
+
+        performCalcLoop(calc, x)
+
+def performCalcLoop(calc,a):
+    x = a
+    while True:
+        printOptions()
+
+        print("c to clear")
+        print('-' * 60)
+        print(str(a) + " is your first number\n")
+        choice = input("Operation? ")
+        if choice == 'c':
+            break  # user types q to quit calulator.
+        elif choice == 'Add':
+            b = getSecondNumber()
+            x = displayResult(calc.add(a, b))
+
+        elif choice == 'Subtract':
+            a, b = getTwoNumbers()
+            x = displayResult(calc.sub(a, b))
+
+        elif choice == 'Multiply':
+            b = getSecondNumber()
+            x = displayResult(calc.mul(a, b))
+
+        elif choice == 'Division':
+            b = getSecondNumber()
+            if b != 0:
+                x = displayResult(calc.div(a, b))
+            else:
+                print("Cannot Divide by Zero")
+                performCalcLoop(calc,a)
+
+        elif choice == 'Exponent':
+            print("First number is base, Second is Exponent")
+            b = getSecondNumber()
+            x = displayResult(calc.powerof(a, b))
+
+        elif choice == 'Squared':
+            x  = displayResult(calc.square(a))
+
+        elif choice == 'Square root':
+            a  = getFirstNumber()
+            x = displayResult(calc.squareroot(a))
+
+        elif choice == 'Inverse':
+            x = displayResult(calc.inverse(a))
+
+        elif choice == 'Switch sign':
+            x = displayResult(calc.switchsign(a))
+
+        elif choice == 'Sine in radians':
+            x = displayResult(calc.sinrad(a))
+
+        elif choice == 'Cosine in radians':
+            x = displayResult(calc.cosrad(a))
+
+
+        elif choice == 'Tangent in radians':
+            x = displayResult(calc.tanrad(a))
+
+        elif choice == 'Cosecant in radians':
+            x = displayResult(calc.cosecrad(a))
+
+        elif choice == 'Secant in radians':
+            x = displayResult(calc.secrad(a))
+
+        elif choice == 'Cotangent in radians':
+            x = displayResult(calc.cotrad(a))
+
+        elif choice == 'Sine in degrees':
+            x =displayResult(calc.sindeg(a))
+
+        elif choice == 'Cosine in degrees':
+            x = displayResult(calc.cosdeg(a))
+
+        elif choice == 'Tangent in degrees':
+            x = displayResult(calc.tandeg(a))
+
+        elif choice == 'Cosecant in degrees':
+            x = displayResult(calc.cosecdeg(a))
+
+        elif choice == 'Secant in degrees':
+            x = displayResult(calc.secdeg(a))
+
+        elif choice == 'Cotangent in degrees':
+            x = displayResult(calc.cotdeg(a))
+
+        elif choice == 'Factorial':
+            x = displayResult(calc.factorial(a))
+
+        elif choice == 'Natural log':
+            x = displayResult(calc.ln(a))
+
+        elif choice == 'Base 10 log':
+            x = displayResult(calc.logten(a))
+
+        elif choice == 'B':
+            x = displayResult(bin(int(a)))
+            x = a
+
+        elif choice == 'O':
+            x = displayResult(oct(int(a)))
+            x = a
+
+        elif choice == 'D':
+            x = displayResult(decimal.Decimal(a))
+            x = a
+
+        elif choice == 'H':
+            x = displayResult(hex(int(a)))
+            x = a
+
+        elif choice == 'R':
+            x = displayResult(math.degrees(a))
+
+        elif choice == 'D':
+            x = displayResult(math.radians(a))
+
+        elif choice == 'M+':
+            global mem
+            mem = x
+
+        elif choice == "MC":
+            mem = 0
+
+        elif choice == "MRC":
+            x = mem
+
+        elif choice == 'Log base x':
+            print("Second number is log base")
+            b = getSecondNumber()
+            x = displayResult(calc.logbasex(a,b))
+
+        else:
+            print("That is not a valid input.")
+
+        performCalcLoop(calc, x)
+
+# main start
+def main():
+    calc = Calculator()
+    performFirstCalcLoop(calc)
+    print("Done Calculating.")
+
+
+if __name__ == '__main__':
+    main()
