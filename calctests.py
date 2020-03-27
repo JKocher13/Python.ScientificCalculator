@@ -1,7 +1,7 @@
 import unittest
 from calculator import Calculator
 
-
+from mainApp import getFirstNumber, getTwoNumbers
 class TestStringMethods(unittest.TestCase):
 
     def test_add(self):
@@ -55,6 +55,33 @@ class TestStringMethods(unittest.TestCase):
     def test_div(self):
         c = Calculator()
         self.assertEqual(c.div( 10,-2 ),-5)
+
+    val = "4.0"
+
+    @patch('builtins.input', return_value=val)
+    def test_getFirstNumber(self, mock_input):
+        result = getFirstNumber();
+        self.assertEqual(float(4.0), result)
+
+
+    val = "4.3"
+
+
+    @patch('builtins.input', return_value=val)
+    def test_getSecondNumber(self, mock_input):
+        result = getFirstNumber();
+        self.assertEqual(float(4.3), result)
+
+
+    val = float(4.3)
+    val2 = float(3.4)
+
+
+    @patch('mainApp.getFirstNumber', return_value=val)
+    @patch('mainApp.getSecondNumber', return_value=val2)
+    def test_getTwoNumbers(self, mock_input, mock_input2):
+        result = getTwoNumbers();
+        self.assertEqual(result, (float(4.3), float(3.4)))
 
 if __name__ == '__main__':
     unittest.main()
