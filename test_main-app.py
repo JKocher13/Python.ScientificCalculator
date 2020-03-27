@@ -3,7 +3,8 @@ from calculator import Calculator
 
 
 class TestStringMethods(unittest.TestCase):
-c = Calculator()
+    
+    c = Calculator()
 
     def test_add(self):
         self.assertEqual(c.add(3, 3), 6)
@@ -43,8 +44,8 @@ c = Calculator()
 
     def test_sinrad(self):
         c = Calculator()
-        self.assertEqual(c.sinrad(3), 0.14112001)
-        self.assertEqual(c.sinrad(2), -0.90929743)
+        self.assertEqual(c.sinrad(3), .1411200080598672)
+        self.assertEqual(c.sinrad(2), 0.9092974268256817)
 
     def test_cosrad(self):
         self.assertEqual(c.cosrad(90), -0.44807362)
@@ -101,6 +102,21 @@ c = Calculator()
 
     def test_logbasex(self):
         self.assertEqual(c.logbasex(60, 20), 1.3667257913)
+
+    val = "4.3"
+    @patch('builtins.input', return_value=val)
+    def test_getSecondNumber(self, mock_input):
+        result = getFirstNumber();
+        self.assertEqual(float(4.3), result)
+        
+    val = float(4.3)
+    val2 = float(3.4)
+
+    @patch('mainApp.getFirstNumber', return_value=val)
+    @patch('mainApp.getSecondNumber', return_value=val2)
+    def test_getTwoNumbers(self, mock_input, mock_input2):
+        result = getTwoNumbers();
+        self.assertEqual(result, (float(4.3), float(3.4)))
         
 if __name__ == '__main__':
     unittest.main()
